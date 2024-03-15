@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Masai Employee Records</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-container">
+            <form>
+                <input placeholder="Name" type="text" id="name" />
+                <input placeholder="Employee ID" type="text" id="employee_id" />
+                <select id="department">
+                    <option value="">Select Department</option>
+                    <option value="HR">HR</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Engineering">Engineering</option>
+                </select>
+                <input placeholder="Experience" type="number" id="experience" />
+                <input placeholder="Email" type="email" id="email" />
+                <input placeholder="Mobile No." type="number" id="mobile" />
+                <input type="submit" value="Submit" />
+            </form>
+
+            <!-- Use this select tag for filtering  -->
+            <select id="filter">
+                <option value="">Select Department</option>
+                <option value="HR">HR</option>
+                <option value="Finance">Finance</option>
+                <option value="Engineering">Engineering</option>
+            </select>
+        </div>
+        <!-- Use this form for taking the inputs  -->
+        <div class="table-container">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Employee ID</th>
+                        <th>Department</th>
+                        <th>Experience in Years</th>
+                        <th>Email</th>
+                        <th>Mobile No</th>
+                        <th>Role</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Append Rows here using JS & DOM  -->
+                </tbody>
+            </table>
+        </div>
+
+        <script>
+
+            document.querySelector("form").addEventListener("submit", (e) => {
+                e.preventDefault();
+
+                let name = document.getElementById("name").value;
+                let eid = document.getElementById("employee_id").value;
+                let department = document.getElementById("department").value;
+                let experience = document.getElementById("experience").value;
+                let email = document.getElementById("email").value;
+                let mobile = document.getElementById("mobile").value;
+                let tbody = document.querySelector("tbody");
+
+                let row = document.createElement("tr");
+
+                let ename = document.createElement("td");
+                ename.textContent = name;
+                row.appendChild(ename);
+
+                let epid = document.createElement("td");
+                epid.textContent = eid;
+                row.appendChild(epid);
+
+                let dptmt = document.createElement("td");
+                dptmt.textContent = department;
+                row.appendChild(dptmt);
+
+                let expr = document.createElement("td");
+                expr.textContent = experience;
+                row.appendChild(expr);
+
+                let emailvar = document.createElement("td");
+                emailvar.textContent = email;
+                row.appendChild(emailvar);
+
+                let mobilevar = document.createElement("td");
+                mobilevar.textContent = mobile;
+                row.appendChild(mobilevar);
+              
+                let role = document.createElement("td");
+                let expervalue = parseInt(experience)
+                if (expervalue > 5) {
+                    role.textContent = "Senior"
+
+                } else if (expervalue < 5 && expervalue > 2) {
+                    role.textContent = "Junior"
+
+                } else {
+                    role.textContent = "Fresher";
+                }
+                row.appendChild(role)
+
+                let dltbtn = document.createElement("td");
+                dltbtn.textContent = "X";
+                dltbtn.style.color = "red";
+                row.appendChild(dltbtn);
+                dltbtn.onclick = function () {
+                    row.parentNode.removeChild(row);
+                }
+                tbody.appendChild(row);
+            });
+
+
+        </script>
+
+</body>
+
+</html>
